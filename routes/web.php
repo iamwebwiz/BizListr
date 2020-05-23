@@ -26,5 +26,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::prefix('admin')->name('admin.')->group(static function () {
     Route::prefix('categories')->name('categories.')->group(static function () {
         Route::get('/', [CategoryController::class, 'index'])->name('index');
+        Route::post('/', [CategoryController::class, 'store'])->name('store');
+        Route::delete('{category}', [CategoryController::class, 'destroy'])->name('destroy');
+    });
+
+    Route::prefix('listings')->name('listings.')->group(static function () {
+        Route::get('/', [])->name('index');
     });
 });

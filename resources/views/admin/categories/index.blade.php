@@ -7,7 +7,9 @@
 @section('content')
     <h2>
         Categories
-        <button class="btn btn-primary float-right">Add New</button>
+        <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#newCategoryModal">
+            Add New
+        </button>
     </h2>
 
     <div class="card">
@@ -18,6 +20,7 @@
                     <th scope="row" width="10%">#</th>
                     <th scope="col">Name</th>
                     <th scope="col">Description</th>
+                    <th scope="col" width="15%">Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -26,12 +29,21 @@
                             <th scope="row">{{ $loop->iteration }}</th>
                             <td>{{ $category->name }}</td>
                             <td>{{ $category->description }}</td>
+                            <td>
+                                <form action="{{route('admin.categories.destroy', $category->id)}}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger btn-sm">Delete</button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
     </div>
+
+    @include('admin.categories.partials.new')
 @stop
 
 @section('scripts')
