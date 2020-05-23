@@ -13,3 +13,5 @@ yarn-error.log
 composer.lock
 .idea
 .DS_Store
+package-lock.json
+yarn.lock
