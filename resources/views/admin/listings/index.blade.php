@@ -33,7 +33,7 @@
                         <td>{{ $listing->email }}</td>
                         <td>{{ $listing->website_url }}</td>
                         <td>
-                            <form action="{{route('admin.listings.destroy', $listing->id)}}" method="post">
+                            <form action="{{ route('admin.listings.destroy', $listing->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-danger btn-sm">
@@ -48,7 +48,7 @@
         </div>
     </div>
 
-    @include('admin.listings.partials._new')
+    @include('admin.listings.partials._new', ['categories' => $categories])
 @stop
 
 @section('scripts')
@@ -57,5 +57,6 @@
 
     <script>
         $('.table').DataTable()
+        $('select.select2').select2()
     </script>
 @stop
