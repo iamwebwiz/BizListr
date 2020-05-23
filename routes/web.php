@@ -35,5 +35,7 @@ Route::prefix('admin')->name('admin.')->group(static function () {
         Route::get('/', [BusinessListingController::class, 'index'])->name('index');
         Route::post('store', [BusinessListingController::class, 'store'])->name('store');
         Route::patch('update', [BusinessListingController::class, 'update'])->name('update');
+        Route::patch('deactivate', [BusinessListingController::class, 'deactivate'])->name('deactivate');
+        Route::delete('destroy', [BusinessListingController::class, 'destroy'])->name('destroy');
     });
 });

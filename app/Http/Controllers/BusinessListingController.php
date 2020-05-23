@@ -11,7 +11,7 @@ class BusinessListingController extends Controller
     {
         $listings = Business::all();
 
-        return
+        return view('admin.listings.index', compact('listings'));
     }
 
     public function store(Request $request)
@@ -29,7 +29,7 @@ class BusinessListingController extends Controller
         //
     }
 
-    public function delete(Request $request)
+    public function destroy(Request $request)
     {
         //
     }
