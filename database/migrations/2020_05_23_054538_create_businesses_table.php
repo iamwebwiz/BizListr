@@ -21,6 +21,7 @@ class CreateBusinessesTable extends Migration
             $table->string('email');
             $table->string('address');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
