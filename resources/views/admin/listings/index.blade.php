@@ -57,6 +57,6 @@
 
     <script>
         $('.table').DataTable()
-        $('select.select2').select2()
+        $('.select2').select2()
     </script>
 @stop

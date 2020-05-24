@@ -23,14 +23,19 @@
                         <input type="text" class="form-control" id="address" name="address" required>
                     </div>
                     <div class="form-group">
-                        <label for="phones">Phones</label>
+                        <label for="phones">
+                            Phones
+                            <small class="text-muted">(separate with comma e.g 088383838,383838383)</small>
+                        </label>
                         <input type="text" class="form-control" id="phones" name="phones">
                     </div>
                     <div class="form-group">
-                        <label for="categories">Categories</label>
+                        <label for="categories">
+                            Categories
+                            <small class="text-muted">(multiple can be selected)</small>
+                        </label>
                         <br>
-                        <select name="categories[]" id="categories" class="js-example-basic-multiple form-control select2" multiple>
-                            <option value="">Choose categories</option>
+                        <select name="categories[]" id="categories" class="form-control" multiple="multiple" style="width: 100%">
                             @foreach ($categories as $category)
                                 <option value="{{$category->id}}">{{$category->name}}</option>
                             @endforeach
@@ -38,7 +43,7 @@
                     </div>
                     <div class="form-group">
                         <label for="websiteUrl">Website URL</label>
-                        <input type="url" class="form-control" id="websiteUrl" name="website_url">
+                        <input type="text" class="form-control" id="websiteUrl" name="website_url">
                     </div>
                     <div class="form-group">
                         <label for="description">Description</label>
