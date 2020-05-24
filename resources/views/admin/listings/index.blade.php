@@ -33,7 +33,7 @@
                         <td>{{ $listing->email }}</td>
                         <td>{{ $listing->website_url }}</td>
                         <td>
-                            <a href="" class="btn btn-info btn-sm" data-toggle="modal" data-target="#editListing{{$listing->id}}Modal">
+                            <a href="{{ route('admin.listings.show', $listing->id) }}" class="btn btn-info btn-sm text-white">
                                 <i class="fa fa-pencil"></i>
                             </a>
                             <form class="d-inline" action="{{ route('admin.listings.destroy', $listing->id) }}" method="post">
@@ -45,8 +45,6 @@
                             </form>
                         </td>
                     </tr>
-
-                    @include('admin.listings.partials._edit', ['listing' => $listing])
                 @endforeach
                 </tbody>
             </table>

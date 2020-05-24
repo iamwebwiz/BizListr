@@ -62,11 +62,37 @@ class BusinessListingController extends Controller
         }
     }
 
-    public function update(Request $request)
+    /**
+     * Show a single business listing.
+     *
+     * @param Business $business
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function show(Business $business)
     {
-        $request->validate(['listingId' => 'required']);
+        return view('admin.listings.show', [
+            'listing' => $business
+        ]);
+    }
 
-        $business = Business::find($request->listingId);
+    /**
+     * Update a business listing.
+     *
+     * @param Request $request
+     * @param Business $business
+     * @return \Illuminate\Http\RedirectResponse|null
+     */
+    public function update(Request $request, Business $business): ?\Illuminate\Http\RedirectResponse
+    {
+        try {
+            $business->update($request->except('_token'));
+
+            return Redirect::route('admin.listings.index');
+        } catch (\Exception $exception) {
+            Log::error("Unable to update listing: {$exception->getTraceAsString()}");
+
+            return Redirect::back();
+        }
     }
 
     public function deactivate(Request $request)

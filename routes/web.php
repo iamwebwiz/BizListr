@@ -24,7 +24,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::prefix('admin')->name('admin.')->group(static function () {
+Route::prefix('admin')->name('admin.')->middleware('auth')->group(static function () {
     Route::prefix('categories')->name('categories.')->group(static function () {
         Route::get('/', [CategoryController::class, 'index'])->name('index');
         Route::post('store', [CategoryController::class, 'store'])->name('store');
@@ -34,7 +34,8 @@ Route::prefix('admin')->name('admin.')->group(static function () {
     Route::prefix('listings')->name('listings.')->group(static function () {
         Route::get('/', [BusinessListingController::class, 'index'])->name('index');
         Route::post('store', [BusinessListingController::class, 'store'])->name('store');
-        Route::patch('update', [BusinessListingController::class, 'update'])->name('update');
+        Route::get('{business}', [BusinessListingController::class, 'show'])->name('show');
+        Route::patch('{business}', [BusinessListingController::class, 'update'])->name('update');
         Route::patch('deactivate', [BusinessListingController::class, 'deactivate'])->name('deactivate');
         Route::delete('destroy', [BusinessListingController::class, 'destroy'])->name('destroy');
     });
