@@ -21,8 +21,8 @@
                     <th scope="col" width="10%">#</th>
                     <th scope="col">Name</th>
                     <th scope="col" width="25%">Email</th>
-                    <th scope="col" width="25%">Website URL</th>
-                    <th scope="col" width="10%">Action</th>
+                    <th scope="col" width="20%">Website URL</th>
+                    <th scope="col" width="15%">Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -35,6 +35,9 @@
                         <td>
                             <a href="{{ route('admin.listings.show', $listing->id) }}" class="btn btn-info btn-sm text-white">
                                 <i class="fa fa-pencil"></i>
+                            </a>
+                            <a href="" class="btn btn-secondary btn-sm text-white">
+                                <i class="fa fa-ban"></i>
                             </a>
                             <form class="d-inline" action="{{ route('admin.listings.destroy', $listing->id) }}" method="post">
                                 @csrf
