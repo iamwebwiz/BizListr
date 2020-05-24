@@ -36,12 +36,18 @@
                             <a href="{{ route('admin.listings.show', $listing->id) }}" class="btn btn-info btn-sm text-white">
                                 <i class="fa fa-pencil"></i>
                             </a>
-                            <a href="" class="btn btn-secondary btn-sm text-white">
-                                <i class="fa fa-ban"></i>
-                            </a>
-                            <form class="d-inline" action="{{ route('admin.listings.destroy', $listing->id) }}" method="post">
+                            <form class="d-inline" action="{{ route('admin.listings.deactivate') }}" method="post">
                                 @csrf
                                 @method('DELETE')
+                                <input type="hidden" name="listingId" value="{{$listing->id}}">
+                                <button class="btn btn-secondary btn-sm">
+                                    <i class="fa fa-ban"></i>
+                                </button>
+                            </form>
+                            <form class="d-inline" action="{{ route('admin.listings.destroy') }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <input type="hidden" name="listingId" value="{{$listing->id}}">
                                 <button class="btn btn-danger btn-sm">
                                     <i class="fa fa-trash"></i>
                                 </button>

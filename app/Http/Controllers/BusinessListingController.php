@@ -95,13 +95,33 @@ class BusinessListingController extends Controller
         }
     }
 
-    public function deactivate(Request $request)
+    /**
+     * Deactivate a listing.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function deactivate(Request $request): \Illuminate\Http\RedirectResponse
     {
-        //
+        $listing = Business::find($request->listingId);
+
+        $listing->delete();
+
+        return Redirect::back();
     }
 
-    public function destroy(Request $request)
+    /**
+     * Delete a listing.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy(Request $request): \Illuminate\Http\RedirectResponse
     {
-        //
+        $listing = Business::find($request->listingId);
+
+        $listing->forceDelete();
+
+        return Redirect::back();
     }
 }

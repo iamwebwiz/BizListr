@@ -36,7 +36,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(static functio
         Route::post('store', [BusinessListingController::class, 'store'])->name('store');
         Route::get('{business}', [BusinessListingController::class, 'show'])->name('show');
         Route::patch('{business}', [BusinessListingController::class, 'update'])->name('update');
-        Route::patch('deactivate', [BusinessListingController::class, 'deactivate'])->name('deactivate');
+        Route::delete('deactivate', [BusinessListingController::class, 'deactivate'])->name('deactivate');
         Route::delete('destroy', [BusinessListingController::class, 'destroy'])->name('destroy');
     });
 });
