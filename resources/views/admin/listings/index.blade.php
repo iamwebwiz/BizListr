@@ -2,7 +2,7 @@
 
 @section('css')
     <link rel="stylesheet" href="//cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.21/r-2.2.5/datatables.min.css"/>
-    <link href="//cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 @stop
 
 @section('content')
@@ -20,9 +20,9 @@
                 <tr>
                     <th scope="col" width="10%">#</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Website URL</th>
-                    <th scope="col" width="15%">Action</th>
+                    <th scope="col" width="25%">Email</th>
+                    <th scope="col" width="25%">Website URL</th>
+                    <th scope="col" width="10%">Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -33,7 +33,10 @@
                         <td>{{ $listing->email }}</td>
                         <td>{{ $listing->website_url }}</td>
                         <td>
-                            <form action="{{ route('admin.listings.destroy', $listing->id) }}" method="post">
+                            <a href="" class="btn btn-info btn-sm" data-toggle="modal" data-target="#editListing{{$listing->id}}Modal">
+                                <i class="fa fa-pencil"></i>
+                            </a>
+                            <form class="d-inline" action="{{ route('admin.listings.destroy', $listing->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-danger btn-sm">
@@ -42,6 +45,8 @@
                             </form>
                         </td>
                     </tr>
+
+                    @include('admin.listings.partials._edit', ['listing' => $listing])
                 @endforeach
                 </tbody>
             </table>
@@ -53,10 +58,8 @@
 
 @section('scripts')
     <script src="//cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.21/r-2.2.5/datatables.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 
     <script>
         $('.table').DataTable()
-        $('.select2').select2()
     </script>
 @stop

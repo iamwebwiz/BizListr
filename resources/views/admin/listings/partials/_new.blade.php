@@ -16,7 +16,7 @@
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="text" class="form-control" id="email" name="email" required>
+                        <input type="email" class="form-control" id="email" name="email" required>
                     </div>
                     <div class="form-group">
                         <label for="address">Address</label>
@@ -34,8 +34,7 @@
                             Categories
                             <small class="text-muted">(multiple can be selected)</small>
                         </label>
-                        <br>
-                        <select name="categories[]" id="categories" class="form-control" multiple="multiple" style="width: 100%">
+                        <select name="categories[]" id="categories" class="form-control" multiple="multiple" style="width: 100%" required>
                             @foreach ($categories as $category)
                                 <option value="{{$category->id}}">{{$category->name}}</option>
                             @endforeach
@@ -43,11 +42,11 @@
                     </div>
                     <div class="form-group">
                         <label for="websiteUrl">Website URL</label>
-                        <input type="text" class="form-control" id="websiteUrl" name="website_url">
+                        <input type="text" class="form-control" id="websiteUrl" name="website_url" required>
                     </div>
                     <div class="form-group">
                         <label for="description">Description</label>
-                        <textarea name="description" id="description" rows="5" class="form-control"></textarea>
+                        <textarea name="description" id="description" rows="5" class="form-control" required></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">

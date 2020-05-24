@@ -25,4 +25,14 @@ class Business extends Model
     {
         return $this->belongsToMany(Category::class);
     }
+
+    /**
+     * The phones associated with this business.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function phones(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(BusinessPhone::class);
+    }
 }

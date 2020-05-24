@@ -14,22 +14,12 @@ class BusinessPhone extends Model
     protected $guarded = [];
 
     /**
-     * The business associated with this model record.
+     * The business associated with this phone record.
      *
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function business()
+    public function business(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return Business::firstWhereId($this->id);
-    }
-
-    /**
-     * The category associated with this model record.
-     *
-     * @return mixed
-     */
-    public function category()
-    {
-        return Category::firstWhereId($this->id);
+        return $this->belongsTo(Business::class);
     }
 }
