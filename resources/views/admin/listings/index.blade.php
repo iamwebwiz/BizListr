@@ -22,7 +22,7 @@
                     <th scope="col">Name</th>
                     <th scope="col" width="25%">Email</th>
                     <th scope="col" width="20%">Website URL</th>
-                    <th scope="col" width="15%">Action</th>
+                    <th scope="col" width="20%">Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -33,6 +33,9 @@
                         <td>{{ $listing->email }}</td>
                         <td>{{ $listing->website_url }}</td>
                         <td>
+                            <a href="" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#listing_{{$listing->id}}_DetailsModal">
+                                <i class="fa fa-eye"></i>
+                            </a>
                             <a href="{{ route('admin.listings.show', $listing->id) }}" class="btn btn-info btn-sm text-white">
                                 <i class="fa fa-pencil"></i>
                             </a>
@@ -54,6 +57,8 @@
                             </form>
                         </td>
                     </tr>
+
+                    @include('admin.listings.partials._details', ['listing' => $listing])
                 @endforeach
                 </tbody>
             </table>
