@@ -21,6 +21,7 @@
                     <th scope="col" width="10%">#</th>
                     <th scope="col" width="30%">Name</th>
                     <th scope="col">Description</th>
+                    <th scope="col" width="15%">Listings</th>
                     <th scope="col" width="15%">Action</th>
                 </tr>
                 </thead>
@@ -30,6 +31,7 @@
                             <th scope="row">{{ $loop->iteration }}</th>
                             <td>{{ $category->name }}</td>
                             <td>{{ $category->description }}</td>
+                            <td>{{ $category->businesses->count() }}</td>
                             <td>
                                 <form action="{{ route('admin.categories.destroy', $category->id) }}" method="post">
                                     @csrf
