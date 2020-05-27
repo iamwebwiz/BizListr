@@ -62,7 +62,7 @@ class BusinessListingController extends Controller
             $business->categories()->attach($request->categories);
 
             collect($phones)->each(static function ($phone) use ($business) {
-                $phoneRecord = new BusinessPhone(['phone' => $phone]);
+                $phoneRecord = new BusinessPhone(['phone' => trim($phone)]);
                 $business->phones()->save($phoneRecord);
             });
 
