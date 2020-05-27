@@ -10,7 +10,6 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
-composer.lock
 .idea
 .DS_Store
 package-lock.json
