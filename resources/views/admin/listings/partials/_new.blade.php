@@ -7,7 +7,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ route('admin.listings.store') }}" method="post">
+            <form action="{{ route('admin.listings.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
@@ -28,6 +28,10 @@
                             <small class="text-muted">(separate with comma e.g 088383838,383838383)</small>
                         </label>
                         <input type="text" class="form-control" id="phones" name="phones">
+                    </div>
+                    <div class="form-group">
+                        <label for="images">Images</label>
+                        <input type="file" name="images[]" id="images" class="form-control" accept="image/*" multiple>
                     </div>
                     <div class="form-group">
                         <label for="categories">

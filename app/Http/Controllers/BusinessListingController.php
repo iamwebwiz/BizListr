@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Business;
+use App\BusinessImage;
 use App\BusinessPhone;
 use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Str;
 
 class BusinessListingController extends Controller
 {
@@ -40,12 +42,13 @@ class BusinessListingController extends Controller
             'categories' => 'required',
             'website_url' => 'required',
             'description' => 'required',
+            'images' => 'required',
         ]);
 
         $phones = explode(',', $request->phones);
 
         try {
-            $business = Business::create($request->except(['_token', 'categories', 'phones']));
+            $business = Business::create($request->except(['_token', 'categories', 'phones', 'images']));
 
             $business->categories()->attach($request->categories);
 
@@ -53,6 +56,15 @@ class BusinessListingController extends Controller
                 $phoneRecord = new BusinessPhone(['phone' => $phone]);
                 $business->phones()->save($phoneRecord);
             });
+
+            foreach ($request->file('images') as $image) {
+                $filePath = $image->store('businesses/' . Str::snake($business->name), 'public');
+
+                BusinessImage::create([
+                    'file_path' => $filePath,
+                    'business_id' => $business->id,
+                ]);
+            }
 
             return Redirect::back();
         } catch (\Exception $exception) {
