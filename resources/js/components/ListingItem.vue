@@ -2,7 +2,7 @@
     <div>
         <div class="card">
             <div style="max-height: 200px; height: 200px; overflow: hidden">
-                <img :src="`/storage/${listing.images[0].file_path}`" class="card-img-top" :alt="listing.name">
+                <img :src="`${listing.images[0].file_path}`" class="card-img-top" :alt="listing.name">
             </div>
             <div class="card-body">
                 <h4 class="card-title">{{ listing.name }}</h4>
