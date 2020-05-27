@@ -35,4 +35,14 @@ class Business extends Model
     {
         return $this->hasMany(BusinessPhone::class);
     }
+
+    /**
+     * The images associated with this business.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function images(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(BusinessImage::class);
+    }
 }

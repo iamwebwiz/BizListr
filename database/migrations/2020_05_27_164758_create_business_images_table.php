@@ -13,9 +13,17 @@ class CreateBusinessImagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('business_images', function (Blueprint $table) {
+        Schema::create('business_images', static function (Blueprint $table) {
             $table->id();
+            $table->string('file_name');
+            $table->unsignedBigInteger('business_id');
             $table->timestamps();
+            $table->softDeletes();
+
+            $table->foreign('business_id')
+                ->references('id')
+                ->on('businesses')
+                ->onDelete('cascade');
         });
     }
 
