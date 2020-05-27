@@ -12,3 +12,15 @@
 - [Click here to login](https://bizlistr.herokuapp.com/login)
 - Email: admin@bizlistr.com
 - Password: initsng
+
+### Reports a platform owner should see
+- Total categories
+- Total listings
+- Total reviews
+- Total signed up users
+
+### Additional features to make app more relevant
+- Showing listings by categories
+- Maps to show the accurate location of the a single business listing
+- Internal messaging system between users and admin (as a means of contact to ask more details about a listing)
+- Favorite/Like a listing
