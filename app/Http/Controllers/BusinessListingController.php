@@ -67,7 +67,11 @@ class BusinessListingController extends Controller
             });
 
             foreach ($request->file('images') as $image) {
-                $filePath = $image->store('businesses/' . Str::snake($business->name), 'public');
+                $fileName = sprintf('%s.%s', Str::random(20), $image->getClientOriginalExtension());
+                $path = sprintf('businesses/%s', Str::snake($business->name));
+                $filePath = "{$path}/{$fileName}";
+
+                $image->move($path, $fileName);
 
                 BusinessImage::create([
                     'file_path' => $filePath,

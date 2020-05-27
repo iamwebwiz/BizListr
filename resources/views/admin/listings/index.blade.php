@@ -28,7 +28,7 @@
                 @foreach ($listings as $listing)
                     <tr>
                         <td>
-                            <img src="{{ "/storage/{$listing->images->first()->file_path}" }}" alt="" style="width: 50px; height: 50px; margin-right: 10px; border-radius: 50%;">
+                            <img src="{{ asset("{$listing->images->first()->file_path}") }}" alt="" style="width: 50px; height: 50px; margin-right: 10px; border-radius: 50%;">
                             {{ $listing->name }}
                         </td>
                         <td>{{ $listing->email }}</td>
