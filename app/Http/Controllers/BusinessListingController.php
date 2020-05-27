@@ -6,22 +6,31 @@ use App\Business;
 use App\BusinessImage;
 use App\BusinessPhone;
 use App\Category;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Str;
+use Illuminate\View\View;
 
 class BusinessListingController extends Controller
 {
     /**
      * View all business listings.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Application|Factory|JsonResponse|View
      */
     public function index()
     {
         $listings = Business::with(['phones', 'images', 'categories'])->get();
         $categories = Category::all();
+
+        if (request()->expectsJson()) {
+            return Response::json($listings, 200);
+        }
 
         return view('admin.listings.index', compact('listings', 'categories'));
     }
@@ -78,7 +87,7 @@ class BusinessListingController extends Controller
      * Show a single business listing.
      *
      * @param Business $business
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Application|Factory|View
      */
     public function show(Business $business)
     {
