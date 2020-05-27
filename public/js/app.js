@@ -1970,6 +1970,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Listings",
@@ -1978,7 +1994,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      'listings': []
+      listings: [],
+      searchString: '',
+      searchResults: []
     };
   },
   mounted: function mounted() {
@@ -1991,7 +2009,18 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('/api/listings').then(function (res) {
         _this.listings = res.data;
       })["catch"](function (err) {
-        return console.log(err.response.data);
+        return console.error(err.response.data);
+      });
+    },
+    searchListings: function searchListings() {
+      var _this2 = this;
+
+      axios.post('/api/search', {
+        search: this.searchString
+      }).then(function (res) {
+        _this2.searchResults = res.data;
+      })["catch"](function (err) {
+        return console.error(err.response.data);
       });
     }
   }
@@ -37662,22 +37691,73 @@ var render = function() {
   return _c(
     "div",
     [
-      !_vm.listings.length
-        ? [_vm._v("There are no listings yet.")]
+      _c("div", { staticClass: "form-group" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.searchString,
+              expression: "searchString"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: { type: "text" },
+          domProps: { value: _vm.searchString },
+          on: {
+            input: [
+              function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.searchString = $event.target.value
+              },
+              _vm.searchListings
+            ]
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("hr"),
+      _vm._v(" "),
+      !_vm.searchString
+        ? [
+            !_vm.listings.length
+              ? [_vm._v("There are no listings yet.")]
+              : [
+                  _c(
+                    "div",
+                    { staticClass: "row" },
+                    _vm._l(_vm.listings, function(listing, index) {
+                      return _c(
+                        "div",
+                        { key: index, staticClass: "col-md-4" },
+                        [_c("ListingItem", { attrs: { listing: listing } })],
+                        1
+                      )
+                    }),
+                    0
+                  )
+                ]
+          ]
         : [
-            _c(
-              "div",
-              { staticClass: "row" },
-              _vm._l(_vm.listings, function(listing, index) {
-                return _c(
-                  "div",
-                  { key: index, staticClass: "col-md-4" },
-                  [_c("ListingItem", { attrs: { listing: listing } })],
-                  1
-                )
-              }),
-              0
-            )
+            !_vm.searchResults.length
+              ? [_vm._v("There are no matching listings.")]
+              : [
+                  _c(
+                    "div",
+                    { staticClass: "row" },
+                    _vm._l(_vm.searchResults, function(listing, index) {
+                      return _c(
+                        "div",
+                        { key: index, staticClass: "col-md-4" },
+                        [_c("ListingItem", { attrs: { listing: listing } })],
+                        1
+                      )
+                    }),
+                    0
+                  )
+                ]
           ]
     ],
     2

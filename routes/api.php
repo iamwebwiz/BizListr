@@ -15,3 +15,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('listings', [BusinessListingController::class, 'index']);
+Route::post('search', [BusinessListingController::class, 'search']);

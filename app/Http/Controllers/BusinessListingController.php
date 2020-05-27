@@ -145,4 +145,22 @@ class BusinessListingController extends Controller
 
         return Redirect::back();
     }
+
+    /**
+     * Search for business listings.
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function search(Request $request): JsonResponse
+    {
+        $query = $request->search;
+
+        $searchResults = Business::with(['categories', 'images', 'phones'])
+            ->where('name', 'like', "%$query%")
+            ->orWhere('description', 'like', "%$query%")
+            ->get();
+
+        return Response::json($searchResults, 200);
+    }
 }
