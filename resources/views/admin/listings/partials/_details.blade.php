@@ -41,7 +41,7 @@
 
                 <h5>Images</h5>
                 @foreach ($listing->images as $image)
-                    <img src="{{asset("storage/{$image->file_path}")}}" alt="" class="img img-thumbnail img-fluid w-25 mr-1">
+                    <img src="{{asset("{$image->file_path}")}}" alt="" class="img img-thumbnail img-fluid w-25 mr-1">
                 @endforeach
                 <hr>
 
