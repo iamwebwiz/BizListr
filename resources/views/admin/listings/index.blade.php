@@ -18,7 +18,6 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th scope="col" width="10%">#</th>
                     <th scope="col">Name</th>
                     <th scope="col" width="25%">Email</th>
                     <th scope="col" width="20%">Website URL</th>
@@ -28,8 +27,10 @@
                 <tbody>
                 @foreach ($listings as $listing)
                     <tr>
-                        <th scope="row">{{ $loop->iteration }}</th>
-                        <td>{{ $listing->name }}</td>
+                        <td>
+                            <img src="{{ asset("storage/{$listing->images->first()->file_path}") }}" alt="" style="width: 50px; height: 50px; margin-right: 10px; border-radius: 50%;">
+                            {{ $listing->name }}
+                        </td>
                         <td>{{ $listing->email }}</td>
                         <td>{{ $listing->website_url }}</td>
                         <td>

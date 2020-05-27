@@ -20,7 +20,7 @@ class BusinessListingController extends Controller
      */
     public function index()
     {
-        $listings = Business::all();
+        $listings = Business::with(['phones', 'images', 'categories'])->get();
         $categories = Category::all();
 
         return view('admin.listings.index', compact('listings', 'categories'));
