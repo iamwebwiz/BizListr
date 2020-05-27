@@ -1,5 +1,6 @@
 <?php
 
+use App\User;
 use Illuminate\Database\Seeder;
 
 class UsersTableSeeder extends Seeder
@@ -11,10 +12,11 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\User::class)->create([
-            'role' => \App\User::ADMIN_ROLE,
+        User::create([
             'name' => 'Administrator',
             'email' => 'admin@bizlistr.com',
+            'role' => User::ADMIN_ROLE,
+            'password' => bcrypt('initsng')
         ]);
     }
 }
