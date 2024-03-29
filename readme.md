@@ -6,10 +6,12 @@
 - Copy contents of `.env.example` to `.env` and set up the database credentials
 - Run `composer install` to install dependencies
 - You may use the sql dump that is in the root of this project for easy setup
+- Generate app key: `php artisan key:generate`
 - Run `php artisan storage:link` for uploaded images
+- Serve the app using: `php artisan serve`
 
 ### Test Login
-- [Click here to login](https://bizlistr.herokuapp.com/login)
+- [Click here to login](http://localhost:8000/login)
 - Email: admin@bizlistr.com
 - Password: initsng
 
